@@ -1,6 +1,9 @@
 ﻿@page "/"
 
-@using FluxorGenericExample.Store.Actions.ShowDialog
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@using FluxorGenericExample.Store.Actions.ShowDialog1
+@using FluxorGenericExample.Store.Actions.ShowDialog2
 
 @inject IDispatcher Dispatcher
 @inject IDialogService DialogService
@@ -9,13 +12,18 @@
 <MudButton OnClick="ShowDialog2">Show Dialog 1</MudButton>
 
 @code{
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+
     private void ShowDialog1()
     {
-        Dispatcher.Dispatch(new ShowDialogAction<Dialog1>(DialogService));
+        Dispatcher.Dispatch(new ShowDialog1Action(DialogService));
     }
 
     private void ShowDialog2()
     {
-        Dispatcher.Dispatch(new ShowDialogAction<Dialog2>(DialogService));
+        Dispatcher.Dispatch(new ShowDialog2Action(DialogService));
     }
 }
