@@ -1,0 +1,20 @@
+﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@code{
+    [CascadingParameter] MudDialogInstance? MudDialog { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Init(Title);
+        base.OnInitialized();
+    }
+
+    public virtual string? Title { get; }
+
+    private void Init(string? title)
+    {
+        if (MudDialog is null)
+            throw new NullReferenceException(nameof(MudDialog));
+        MudDialog.SetTitle(title);
+    }
+}

@@ -1,0 +1,25 @@
+﻿@inherits DialogBase
+
+@using FluxorGenericExample.Store.States
+@using FluxorGenericExample.Store.Actions.HideDialog
+
+@inject IState<IndexState> State
+@inject IDispatcher Dispatcher
+
+<div>
+    <MudDialog>
+        <DialogContent>
+            <MudForm>
+            </MudForm>
+        </DialogContent>
+        <DialogActions>
+            <MudButton OnClick="Close" Disabled="State.Value.IsBusy">"Close"</MudButton>
+        </DialogActions>
+    </MudDialog>
+</div>
+
+@code{
+    public override string? Title => "Title 2";
+
+    private void Close() => Dispatcher.Dispatch(new HideDialogAction());
+}

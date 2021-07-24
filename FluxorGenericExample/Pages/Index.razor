@@ -1,0 +1,21 @@
+﻿@page "/"
+
+@using FluxorGenericExample.Store.Actions.ShowDialog
+
+@inject IDispatcher Dispatcher
+@inject IDialogService DialogService
+
+<MudButton OnClick="ShowDialog1">Show Dialog 1</MudButton>
+<MudButton OnClick="ShowDialog2">Show Dialog 1</MudButton>
+
+@code{
+    private void ShowDialog1()
+    {
+        Dispatcher.Dispatch(new ShowDialogAction<Dialog1>(DialogService));
+    }
+
+    private void ShowDialog2()
+    {
+        Dispatcher.Dispatch(new ShowDialogAction<Dialog2>(DialogService));
+    }
+}
